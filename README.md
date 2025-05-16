@@ -55,7 +55,7 @@ A RESTful API for managing tasks and users with role-based access control. Admin
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/dotunoflagos/
+   git clone https://github.com/Dotunoflagos/RESTful-API-for-managing-tasks-.git
    cd task-management-api
    ```
 
