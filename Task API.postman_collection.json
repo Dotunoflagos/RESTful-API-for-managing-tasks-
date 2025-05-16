@@ -1,0 +1,431 @@
+{
+	"info": {
+		"_postman_id": "878dad57-7250-4f11-a4a6-ba65752a4840",
+		"name": "Task API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44895481"
+	},
+	"item": [
+		{
+			"name": "Createg User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.cookies.clear(); // This clears all cookies for the domain",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstname\": \"Adedotun2\",\n  \"lastname\": \"balogun2\",\n  \"email\": \"balogunadedotun96@gmail.com\",\n  \"phone\": \"123-456-7890\",\n  \"username\": \"Adedotun2\",\n  \"password\": \"password123\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{PORT}}/api/v1/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"register"
+					]
+				},
+				"description": "### User Registration\n\n- **URL:** `/auth/register`\n- **Method:** `POST`\n- **Success Response:**\n    \n\n`{ \"message\": \"Registration successful. Please check your email for the OTP.\", \"user\": { \"_id\": \"user_id\", \"firstname\": \"First Name\", \"lastname\": \"Last Name\", \"email\": \"`[<code>user@example.com</code>](https://mailto:user@example.com)`\" } }`"
+			},
+			"response": []
+		},
+		{
+			"name": "LogIn",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.cookies.clear(); // This clears all cookies for the domain",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"Adedotun\",\n  \"password\": \"password123\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{PORT}}/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				},
+				"description": "### User Login\n\n- **URL:** `/auth/login`\n- **Method:** `POST`\n- **Success Response:**\n    \n\n`{ \"message\": \"Logged in\", \"token\": \"JWT token\" }`"
+			},
+			"response": []
+		},
+		{
+			"name": "ResendOTP",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"johndoe@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{PORT}}/api/v1/resend-otp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"resend-otp"
+					]
+				},
+				"description": "- **URL:** `/auth/resend-otp`\n    \n- **Method:** `POST`\n    \n- **Request Body:**\n    \n\n**Success Response:**\n\n`{   \"message\": \"New OTP sent to your email\"   }`"
+			},
+			"response": []
+		},
+		{
+			"name": "VerifyOTP",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"balogunadedotun96@gmail.com\",\n  \"otp\": \"544341\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{PORT}}/api/v1/verify-otp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"verify-otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resetPassword/request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"adedotun1balogun@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{PORT}}/api/v1/reset-password/request",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"reset-password",
+						"request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resetPassword/verify",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"adedotun1balogun@gmail.com\",\n  \"otp\":\"883501\",\n  \"newPassword\": \"password123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{PORT}}/api/v1/reset-password/verify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"reset-password",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{PORT}}/api/v1/allUsers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"allUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTask",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Complete Project Proposal\",\n    \"description\": \"Write and submit the project proposal document\",\n    \"assignedTo\": \"68240388674e1c3d0e078397\",\n    \"dueDate\": \"2025-05-15\",\n    \"priority\": \"High\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{PORT}}/api/v1/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"tasks"
+					]
+				},
+				"description": "### **1\\. Create a New Task**\n\n- **URL:** `/tasks`\n- **Method:** `POST`\n- **Access:** Admin Only\n    \n\n**`Request Body:`**\n\n`{ \"title\": \"Task Title\", \"description\": \"Task description\", \"assignedTo\": \"User ID\", \"dueDate\": \"YYYY-MM-DD\", \"priority\": \"Low | Medium | High\" }`"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllTasks",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{PORT}}/api/v1/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"tasks"
+					]
+				},
+				"description": "### 2\\. Get All Tasks\n\n- **URL:** `/tasks`\n- **Method:** `GET`\n- **Access:** Admin and Members\n- **Query Parameters:**\n    - `status` (optional) - Filter tasks by status\n- **Success Response:**\n    \n\n`[ { \"_id\": \"task_id\", \"title\": \"Task Title\", \"description\": \"Task description\", \"assignedTo\": { \"_id\": \"User ID\", \"name\": \"User Full Name\" }, \"status\": \"Pending\" } ]`"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTaskByID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{PORT}}/api/v1/tasks/68240821673e9f8edb56a090",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"68240821673e9f8edb56a090"
+					]
+				},
+				"description": "### 4\\. Delete a Task\n\n- **URL:** `/tasks/:id`\n    \n- **Method:** `DELETE`\n    \n- **Access:** Admin Only\n    \n- **Success Response:**\n    \n\n`{   \"message\": \"Task deleted\"   }`"
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateTask",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Project Proposal\",\n    \"description\": \"Write project proposal document\",\n    \"status\": \"Done\",\n    \"createdBy\": \"6823e30e359305daafcfbd74\",\n    \"assignedTo\": \"68240388674e1c3d0e078397\",\n    \"dueDate\": \"2025-05-15T00:00:00.000Z\",\n    \"priority\": \"High\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{PORT}}/api/v1/tasks/68240821673e9f8edb56a090",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"68240821673e9f8edb56a090"
+					]
+				},
+				"description": "### 3\\. Update a Task\n\n- **URL:** `/tasks/:id`\n    \n- **Method:** `PUT`\n    \n- **Access:** Admin and Members"
+			},
+			"response": []
+		}
+	]
+}

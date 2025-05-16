@@ -1,0 +1,456 @@
+info:
+  title: o
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /api/v1/register:
+    post:
+      summary: Createg User
+      deprecated: false
+      description: >-
+        ### User Registration
+
+
+        - **URL:** `/auth/register`
+
+        - **Method:** `POST`
+
+        - **Success Response:**
+            
+
+        `{ "message": "Registration successful. Please check your email for the
+        OTP.", "user": { "_id": "user_id", "firstname": "First Name",
+        "lastname": "Last Name", "email":
+        "`[<code>user@example.com</code>](https://mailto:user@example.com)`" }
+        }`
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              firstname:
+                type: string
+              lastname:
+                type: string
+              email:
+                type: string
+              phone:
+                type: string
+              username:
+                type: string
+              password:
+                type: string
+            required:
+              - firstname
+              - lastname
+              - email
+              - phone
+              - username
+              - password
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /api/v1/login:
+    post:
+      summary: LogIn
+      deprecated: false
+      description: |-
+        ### User Login
+
+        - **URL:** `/auth/login`
+        - **Method:** `POST`
+        - **Success Response:**
+            
+
+        `{ "message": "Logged in", "token": "JWT token" }`
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+            required:
+              - username
+              - password
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /api/v1/resend-otp:
+    post:
+      summary: ResendOTP
+      deprecated: false
+      description: |-
+        - **URL:** `/auth/resend-otp`
+            
+        - **Method:** `POST`
+            
+        - **Request Body:**
+            
+
+        **Success Response:**
+
+        `{   "message": "New OTP sent to your email"   }`
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+            required:
+              - email
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /api/v1/verify-otp:
+    post:
+      summary: VerifyOTP
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              otp:
+                type: string
+            required:
+              - email
+              - otp
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /api/v1/reset-password/request:
+    post:
+      summary: resetPassword/request
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+            required:
+              - email
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /api/v1/reset-password/verify:
+    post:
+      summary: resetPassword/verify
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              otp:
+                type: string
+              newPassword:
+                type: string
+            required:
+              - username
+              - otp
+              - newPassword
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /api/v1/allUsers:
+    get:
+      summary: Get All User
+      deprecated: false
+      description: ''
+      tags: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /api/v1/tasks:
+    post:
+      summary: CreateTask
+      deprecated: false
+      description: >-
+        ### **1\. Create a New Task**
+
+
+        - **URL:** `/tasks`
+
+        - **Method:** `POST`
+
+        - **Access:** Admin Only
+            
+
+        **`Request Body:`**
+
+
+        `{ "title": "Task Title", "description": "Task description",
+        "assignedTo": "User ID", "dueDate": "YYYY-MM-DD", "priority": "Low |
+        Medium | High" }`
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              assignedTo:
+                type: string
+              dueDate:
+                type: string
+              priority:
+                type: string
+            required:
+              - title
+              - description
+              - assignedTo
+              - dueDate
+              - priority
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+    get:
+      summary: GetAllTasks
+      deprecated: false
+      description: >-
+        ### 2. Get All Tasks
+
+        - **URL:** `/tasks`
+
+        - **Method:** `GET`
+
+        - **Access:** Admin and Members
+
+        - **Query Parameters:**
+            - `status` (optional) - Filter tasks by status
+
+        - **Success Response:**
+
+        `[ { "_id": "task_id", "title": "Task Title", "description": "Task description", "assignedTo": { "_id": "User ID", "name": "User Full Name" }, "status": "Pending" } ]`
+      tags: []
+      parameters:
+        - name: status
+          in: query
+          description: Filter tasks by status
+          required: false
+          type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                _id:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+                assignedTo:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    name:
+                      type: string
+                status:
+                  type: string
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+  /api/v1/tasks/68240821673e9f8edb56a090:
+    delete:
+      summary: DeleteTaskByID
+      deprecated: false
+      description: |-
+        ### 4\. Delete a Task
+
+        - **URL:** `/tasks/:id`
+            
+        - **Method:** `DELETE`
+            
+        - **Access:** Admin Only
+            
+        - **Success Response:**
+            
+
+        `{   "message": "Task deleted"   }`
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties: {}
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+    put:
+      summary: UpdateTask
+      deprecated: false
+      description: |-
+        ### 3\. Update a Task
+
+        - **URL:** `/tasks/:id`
+            
+        - **Method:** `PUT`
+            
+        - **Access:** Admin and Members
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              status:
+                type: string
+              createdBy:
+                type: string
+              assignedTo:
+                type: string
+              dueDate:
+                type: string
+              priority:
+                type: string
+            required:
+              - title
+              - description
+              - status
+              - createdBy
+              - assignedTo
+              - dueDate
+              - priority
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+security: []
+swagger: '2.0'
+definitions: {}
+securityDefinitions: {}
+x-components: {}

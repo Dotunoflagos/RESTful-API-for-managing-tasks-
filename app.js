@@ -5,6 +5,10 @@ const cookieParser = require("cookie-parser");
 const db = require("./config/connection");
 const userRoutes = require("./routes/userRoutes");
 const taskRoutes = require("./routes/taskRoutes");
+const YAML = require("yamljs");
+const path = require("path");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocumentation = YAML.load(path.join(__dirname, "o.swagger.yaml"));
 
 // const uiRoutes = require('./routes/uiRoutes');
 require("dotenv").config();
@@ -19,10 +23,9 @@ app.set("views", "views");
 
 // routes prefix
 app.use("/api/v1", userRoutes);
-app.use('/api/v1', taskRoutes);
+app.use("/api/v1", taskRoutes);
 
-app.set("view engine", "ejs");
-
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocumentation));
 
 const PORT = process.env.PORT || 3030;
 
@@ -33,7 +36,7 @@ const server = app
   .on("error", (err) => {
     if (err.code === "EADDRINUSE") {
       console.error(`Port ${PORT} is in use. Trying another port...`);
-      const fallbackServer = app.listen(3000, () => {
+      const fallbackServer = app.listen(0, () => {
         console.log(
           `Server now running on available port http://localhost:${
             fallbackServer.address().port

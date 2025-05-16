@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "app": "nodemon --ext js,ejs,css app.js",
+    "app": "nodemon --ext js,ejs,css,yaml app.js",
     "browser-sync": "browser-sync start --proxy localhost:5000 --files views/**/*.ejs public/**/*",
     "dev": "concurrently \"npm run start\" \"npm run app\""
   },
@@ -29,6 +29,8 @@
     "cors": "^2.8.5",
     "nodemailer": "^7.0.3",
     "nodemailer-smtp-transport": "^2.7.4",
-    "uuid": "^9.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^9.0.1",
+    "yamljs": "^0.3.0"
   }
 }
